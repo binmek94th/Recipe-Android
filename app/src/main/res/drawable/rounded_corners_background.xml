@@ -1,0 +1,13 @@
+<!-- res/drawable/rounded_corners_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Adjust the radius to control the curvature of the corners -->
+    <corners android:radius="25dp" />
+
+    <!-- Optional: Set a stroke (border) around the shape -->
+
+
+    <!-- Set the solid color inside the shape (background of the item) -->
+    <solid android:color="#CDECFE" />
+</shape>
