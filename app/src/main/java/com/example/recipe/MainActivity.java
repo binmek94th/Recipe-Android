@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
     private List<Recipe> getRecipes() {
         // Dummy data for demonstration
         List<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("Recipe 1", "Breakfast", "Easy", "10 min"));
-        recipes.add(new Recipe("Recipe 2", "Breakfast", "Medium", "20 min"));
-        recipes.add(new Recipe("Recipe 1", "Lunch", "Easy", "30 min"));
-        recipes.add(new Recipe("Recipe 2", "Lunch", "Hard", "60 min"));
-        recipes.add(new Recipe("Recipe 1", "Dinner", "Medium", "40 min"));
-        recipes.add(new Recipe("Recipe 2", "Dinner", "Hard", "90 min"));
+        recipes.add(new Recipe("Blueberry Pancake", "Breakfast", "Easy", "20 min", new ArrayList<String>(), R.drawable.image));
+        recipes.add(new Recipe("Hercules Waffle", "Breakfast", "Medium", "12 min", new ArrayList<String>(), R.drawable.image));
+        recipes.add(new Recipe("Caesar Salad", "Lunch", "Easy", "30 min", new ArrayList<String>(), R.drawable.image));
+        recipes.add(new Recipe("Beef Stew", "Lunch", "Hard", "60 min", new ArrayList<String>(), R.drawable.image));
+        recipes.add(new Recipe("Grilled Salmon", "Dinner", "Medium", "40 min", new ArrayList<String>(), R.drawable.image));
+        recipes.add(new Recipe("Spaghetti Carbonara", "Dinner", "Hard", "90 min", new ArrayList<String>(), R.drawable.image));
         return recipes;
     }
 

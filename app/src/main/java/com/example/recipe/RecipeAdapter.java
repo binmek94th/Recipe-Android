@@ -3,12 +3,10 @@ package com.example.recipe;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
@@ -22,12 +20,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     // ViewHolder class
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
+        public ImageView recipeImageView;
         public TextView nameTextView;
         public TextView difficultyTextView;
         public TextView durationTextView;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
+            recipeImageView = itemView.findViewById(R.id.recipe_image);
             nameTextView = itemView.findViewById(R.id.recipe_name);
             difficultyTextView = itemView.findViewById(R.id.difficulty);
             durationTextView = itemView.findViewById(R.id.duration);
@@ -44,6 +44,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
+        holder.recipeImageView.setImageResource(recipe.getImageResId()); // Bind the image
         holder.nameTextView.setText(recipe.getName());
         holder.difficultyTextView.setText(recipe.getDifficulty());
         holder.durationTextView.setText(recipe.getDuration());
@@ -59,4 +60,3 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         this.recipeList = recipes;
     }
 }
-
