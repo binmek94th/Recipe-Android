@@ -1,10 +1,14 @@
 package com.example.recipe;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
+        navigation.setOnNavigationItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+
+            // Handling menu item clicks using if-else statements
+            if (item.getItemId() == R.id.navigation_home) {
+                // Open Home or MainActivity
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                return true;
+            } else if (item.getItemId() == R.id.Favourites) {
+                // Open FavoritesActivity
+                startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
+                return true;
+            }
+
+            return false;
+        });
 
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recipes_recycler_view);
@@ -66,12 +88,9 @@ public class MainActivity extends AppCompatActivity {
     private List<Recipe> getRecipes() {
         // Dummy data for demonstration
         List<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("Blueberry Pancake", "Breakfast", "Easy", "20 min", new ArrayList<String>(), R.drawable.image));
-        recipes.add(new Recipe("Hercules Waffle", "Breakfast", "Medium", "12 min", new ArrayList<String>(), R.drawable.image));
-        recipes.add(new Recipe("Caesar Salad", "Lunch", "Easy", "30 min", new ArrayList<String>(), R.drawable.image));
-        recipes.add(new Recipe("Beef Stew", "Lunch", "Hard", "60 min", new ArrayList<String>(), R.drawable.image));
-        recipes.add(new Recipe("Grilled Salmon", "Dinner", "Medium", "40 min", new ArrayList<String>(), R.drawable.image));
-        recipes.add(new Recipe("Spaghetti Carbonara", "Dinner", "Hard", "90 min", new ArrayList<String>(), R.drawable.image));
+        recipes.add(new Recipe("Blueberry Pancake", "Breakfast", "Easy", "20 min", "A delicious blueberry pancake. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, turpis vel malesuada sodales, massa justo egestas risus, in accumsan lectus augue in dui. Aliquam blandit consectetur elit, in egestas leo auctor a", new ArrayList<>(List.of("Blueberries", "Pancake Mix", "Milk")), R.drawable.pancake));
+        recipes.add(new Recipe("Hercules Wrap", "Lunch", "Medium", "12 min", "A nutritious Hercules wrap. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, turpis vel malesuada sodales, massa justo egestas risus, in accumsan lectus augue in dui. Aliquam blandit consectetur elit, in egestas leo auctor a", new ArrayList<>(List.of("Wrap", "Chicken", "Vegetables")), R.drawable.download));
+        recipes.add(new Recipe("Spaghetti Carbonara", "Dinner", "Hard", "30 min", "Classic Italian pasta dish. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, turpis vel malesuada sodales, massa justo egestas risus, in accumsan lectus augue in dui. Aliquam blandit consectetur elit, in egestas leo auctor a", new ArrayList<>(List.of("Spaghetti", "Eggs", "Pancetta")), R.drawable.download1));
         return recipes;
     }
 

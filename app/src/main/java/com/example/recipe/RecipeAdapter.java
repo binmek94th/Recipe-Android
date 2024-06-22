@@ -1,5 +1,6 @@
 package com.example.recipe;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +21,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     // ViewHolder class
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
-        public ImageView recipeImageView;
+        public ImageView recipeImageView; // Add this line
         public TextView nameTextView;
         public TextView difficultyTextView;
         public TextView durationTextView;
 
         public RecipeViewHolder(View itemView) {
             super(itemView);
-            recipeImageView = itemView.findViewById(R.id.recipe_image);
+            recipeImageView = itemView.findViewById(R.id.recipe_image); // Add this line
             nameTextView = itemView.findViewById(R.id.recipe_name);
             difficultyTextView = itemView.findViewById(R.id.difficulty);
             durationTextView = itemView.findViewById(R.id.duration);
@@ -44,10 +45,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
-        holder.recipeImageView.setImageResource(recipe.getImageResId()); // Bind the image
+        holder.recipeImageView.setImageResource(recipe.getImageResourceId()); // Add this line
         holder.nameTextView.setText(recipe.getName());
         holder.difficultyTextView.setText(recipe.getDifficulty());
         holder.durationTextView.setText(recipe.getDuration());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), DetailActivity.class);
+            intent.putExtra(DetailActivity.EXTRA_NAME, recipe.getName());
+            intent.putExtra(DetailActivity.EXTRA_CATEGORY, recipe.getCategory());
+            intent.putExtra(DetailActivity.EXTRA_DURATION, recipe.getDuration());
+            intent.putExtra(DetailActivity.EXTRA_DIFFICULTY, recipe.getDifficulty());
+            intent.putExtra(DetailActivity.EXTRA_DESCRIPTION, recipe.getDescription());
+            intent.putStringArrayListExtra(DetailActivity.EXTRA_INGREDIENTS, recipe.getIngredients());
+            intent.putExtra(DetailActivity.EXTRA_IMAGE_RESOURCE_ID, recipe.getImageResourceId()); // Add this line
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

@@ -9,16 +9,19 @@ public class Recipe {
     private String difficulty;
     private String description;
     private ArrayList<String> ingredients;
-    private int imageResId; // New field for the image resource ID
+    private int imageResourceId; // Add this line
+
+
 
     // Constructor
-    public Recipe(String name, String category, String difficulty, String duration, ArrayList<String> ingredients, int imageResId) {
+    public Recipe(String name, String category, String difficulty, String duration, String description, ArrayList<String> ingredients, int imageResourceId) {
         this.name = name;
         this.category = category;
         this.difficulty = difficulty;
         this.duration = duration;
+        this.description = description;
         this.ingredients = ingredients;
-        this.imageResId = imageResId; // Initialize the new field
+        this.imageResourceId = imageResourceId; // Add this line
     }
 
     public String getDuration() {
@@ -38,11 +41,17 @@ public class Recipe {
         return difficulty;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public ArrayList<String> getIngredients() {
         return ingredients;
     }
-
-    public int getImageResId() {
-        return imageResId; // Getter for the image resource ID
+    public int getImageResourceId() {
+        return imageResourceId;
+    }
+    public void setImageResourceId(int imageResourceId) {
+        this.imageResourceId = imageResourceId;
     }
 }
